@@ -4,13 +4,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Payroll {
     public static void main(String[] args) {
-        String fileName = "employees.csv";
-        String outputtedFileName = "employeePayroll.csv";
+        String fileName = "";
+        String outputtedFileName = "";
 
         try {
+            Scanner payrollScanner = new Scanner(System.in);
+            System.out.println("Please enter the name of the file you would like to input:");
+            fileName = payrollScanner.nextLine();
+            System.out.println("Please enter the name of the file you would like to create:");
+            outputtedFileName = payrollScanner.nextLine();
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             FileWriter payrollFileWriter = new FileWriter(outputtedFileName);
             String line;

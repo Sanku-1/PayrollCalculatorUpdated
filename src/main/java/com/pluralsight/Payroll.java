@@ -8,10 +8,13 @@ import java.io.IOException;
 public class Payroll {
     public static void main(String[] args) {
         String fileName = "employees.csv";
+        String outputtedFileName = "employeePayroll.csv";
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            FileWriter payrollFileWriter = new FileWriter(outputtedFileName);
             String line;
+            String text;
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("\\|");
                 int id = Integer.parseInt(tokens[0]);
@@ -20,16 +23,19 @@ public class Payroll {
                 double payRate = Double.parseDouble(tokens[3]);
 
                 Employee employee = new Employee(id, name, hoursWorked, payRate);
-
-                System.out.printf("Employee ID: %d, Name: %s, Gross Pay: $%.2f%n",
+                text = String.format("Employee ID: %d, Name: %s, Gross Pay: $%.2f%n",
                         employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
 
-                FileWriter payrollFileWriter = new FileWriter("employeePayroll.csv");
+//                System.out.printf("Employee ID: %d, Name: %s, Gross Pay: $%.2f%n",
+//                        employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
+
+                payrollFileWriter.write(text);
 
 
             }
             reader.close();
-        } catch (IOException e) {
+            payrollFileWriter.close();
+        } catch (Exception e) {
             System.err.println("Error reading file: " + fileName);
         }
     }

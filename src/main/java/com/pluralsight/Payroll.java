@@ -29,7 +29,7 @@ public class Payroll {
                 double payRate = Double.parseDouble(tokens[3]);
 
                 Employee employee = new Employee(id, name, hoursWorked, payRate);
-                text = String.format("Employee ID: %d, Name: %s, Gross Pay: $%.2f%n",
+                text = String.format("%d| %s| %.2f%n",
                         employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
 
 //                System.out.printf("Employee ID: %d, Name: %s, Gross Pay: $%.2f%n",
